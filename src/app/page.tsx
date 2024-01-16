@@ -1,9 +1,5 @@
 import Image from "next/image";
-import {
-    CredentialsSignInButton,
-    GithubSignInButton,
-    GoogleSignInButton,
-} from "@/components/shared/AuthButton";
+
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/auth";
 import { redirect } from "next/navigation";
