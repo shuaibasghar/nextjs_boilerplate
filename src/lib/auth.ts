@@ -10,14 +10,21 @@ import GithubProvider from "next-auth/providers/github";
 
 import UserModel from "./models/user.model";
 
+interface Credentials {
+    email: string;
+    passoword: string;
+}
 export const authConfig: NextAuthOptions = {
     providers: [
         CredentialsProvider({
             name: "credentials",
             credentials: {},
-            async authorize(credentials) {
+            async authorize(credentials, req) {
                 try {
-                    const { email, password } = credentials;
+                    const { email, password } = credentials as {
+                        email: string;
+                        password: string;
+                    };
                     await connectToDB();
                     const user = await UserModel.findOne({ email });
                     console.log("user:", user);
